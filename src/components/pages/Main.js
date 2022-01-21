@@ -5,15 +5,22 @@ import AddContactModal from './AddContactModal';
 import EditContactModal from './EditContactModal';
 import ContactRows from './ContactRows';
 import { FaPlus } from "react-icons/fa";
+import { useSelector } from 'react-redux';
 
 const Main = () => {
+    const contacts = useSelector((state) => state);
+    const [id, setId] = useState();
+
     const [showAdd, setShowAdd] = useState(false);
     const handleAddClose = () => setShowAdd(false);
     const handleAddShow = () => setShowAdd(true);
 
     const [showEdit, setShowEdit] = useState(false);
     const handleEditClose = () => setShowEdit(false);
-    const handleEditShow = (contact_id) => setShowEdit(true);
+    const handleEditShow = (contact_id) => {
+        setId(contact_id);
+        setShowEdit(true);
+    };
 
     return (
         <main>
@@ -36,7 +43,9 @@ const Main = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <ContactRows handleShow={handleEditShow} />
+                            <ContactRows
+                                data={contacts}
+                                handleShow={handleEditShow} />
                         </tbody>
                     </Table>
                 </div>
@@ -44,9 +53,10 @@ const Main = () => {
             <AddContactModal
                 show={showAdd}
                 handleClose={handleAddClose} />
-            <EditContactModal
+            {id && <EditContactModal
                 show={showEdit}
-                handleClose={handleEditClose} />
+                handleClose={handleEditClose}
+                contact_id={id} />}
         </main>
     );
 };

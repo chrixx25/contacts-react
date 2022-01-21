@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const AddContactModal = ({ show, handleClose }) => {
     const [contact, setContact] = useState({ first_name: '', last_name: '', middle_name: '', email: '', mobile_no: '' });
+    const contacts = useSelector((state) => state);
+    const dispatch = useDispatch();
 
     const handleChange = (e) => {
         const name = e.target.name;
@@ -15,10 +19,12 @@ const AddContactModal = ({ show, handleClose }) => {
         const { first_name, last_name, middle_name, email, mobile_no } = contact;
 
         if (first_name && last_name && middle_name && email && mobile_no) {
-            const new_contact = { ...contact, id: 0 };
+            const new_contact = { ...contact, id: (contacts.length || 0) + 1 };
 
+            dispatch({ type: 'ADD_CONTACT', payload: new_contact });
             setContact({ first_name: '', last_name: '', middle_name: '', email: '', mobile_no: '' });
             handleClose();
+            toast.success("Contact added successfully!");
         }
     };
 
