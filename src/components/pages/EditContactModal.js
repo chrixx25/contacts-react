@@ -1,8 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
-const EditContactModal = ({ show, handleClose }) => {
+const EditContactModal = ({ show, handleClose, contact_id }) => {
     const [contact, setContact] = useState({ first_name: '', last_name: '', middle_name: '', email: '', mobile_no: '' });
+    const contacts = useSelector((state) => state);
+    const current_contact = contacts.find(contact => contact.id === parseInt(contact_id));
+    const dispatch = useDispatch();
 
     const handleChange = (e) => {
         const name = e.target.name;
@@ -15,12 +20,19 @@ const EditContactModal = ({ show, handleClose }) => {
         const { first_name, last_name, middle_name, email, mobile_no } = contact;
 
         if (first_name && last_name && middle_name && email && mobile_no) {
-            const new_contact = { ...contact, id: 0 };
+            const new_contact = contact;
 
+            dispatch({ type: 'UPDATE_CONTACT', payload: new_contact });
             setContact({ first_name: '', last_name: '', middle_name: '', email: '', mobile_no: '' });
             handleClose();
+            toast.success("Contact updated successfully!");
         }
     };
+
+    useEffect(() => {
+        if (current_contact)
+            setContact(current_contact)
+    }, [current_contact]);
 
     return (
         <Modal
