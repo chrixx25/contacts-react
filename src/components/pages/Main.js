@@ -50,11 +50,9 @@ const Main = () => {
                     </Table>
                 </div>
             </Container>
-            <AddContactModal
-                show={showAdd}
-                handleClose={handleAddClose} />
-            {id && <EditContactModal
-                show={showEdit}
+            {showAdd && <AddContactModal
+                handleClose={handleAddClose} />}
+            {id && showEdit && <EditContactModal
                 handleClose={handleEditClose}
                 contact_id={id} />}
         </main>

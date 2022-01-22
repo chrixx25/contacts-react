@@ -1,4 +1,3 @@
-import { FaRegBell } from "react-icons/fa";
 import { Navbar } from "react-bootstrap";
 
 const Header = () => {
