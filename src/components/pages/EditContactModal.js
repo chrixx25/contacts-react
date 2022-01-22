@@ -13,7 +13,7 @@ const EditContactModal = ({ handleClose, contact_id }) => {
         const name = e.target.name;
         const value = e.target.value;
 
-        if (name == 'mobile_no')
+        if (name === 'mobile_no')
             if (isNaN(value)) return false;
 
         setContact((contact) => ({ ...contact, [name]: value }));
