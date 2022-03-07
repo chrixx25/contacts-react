@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { updateContact } from '../../redux/contacts/action';
 
 const EditContactModal = ({ handleClose, contact_id }) => {
     const initial_state = { first_name: '', last_name: '', middle_name: '', email: '', mobile_no: '' }
@@ -27,7 +28,7 @@ const EditContactModal = ({ handleClose, contact_id }) => {
             if (!!checkEmail(contact.email) || !!checkMobile(mobile_no))
                 return false;
 
-            dispatch({ type: 'UPDATE_CONTACT', payload: new_contact });
+            dispatch(updateContact(new_contact));
             setContact({ first_name: '', last_name: '', middle_name: '', email: '', mobile_no: '' });
             handleClose();
             toast.success("Contact updated successfully!");

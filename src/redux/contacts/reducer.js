@@ -1,3 +1,5 @@
+import * as actions from '../ActionTypes';
+
 const initial_state = [
     {
         id: 1,
@@ -19,14 +21,14 @@ const initial_state = [
 
 const contactReducer = (state = initial_state, action) => {
     switch (action.type) {
-        case 'ADD_CONTACT':
+        case actions.ADD_CONTACT:
             state = [...state, action.payload];
             return state;
-        case 'UPDATE_CONTACT':
+        case actions.UPDATE_CONTACT:
             const updated_state = state.map(contact => contact.id === action.payload.id ? action.payload : contact);
             state = updated_state
             return state;
-        case 'DELETE_CONTACT':
+        case actions.DELETE_CONTACT:
             const deleted_state = state.filter(contact => contact.id !== action.payload);
             state = deleted_state;
             return state;
