@@ -1,7 +1,7 @@
 import Main from './components/pages/Main';
 import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
-import store from './redux/stores/ContactStore';
+import store from './redux/contacts/store';
 
 function App() {
   return (

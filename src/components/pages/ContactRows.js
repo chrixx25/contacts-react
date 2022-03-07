@@ -3,7 +3,7 @@ import { FaTrash, FaPencilAlt } from 'react-icons/fa';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { deleteContact } from '../../redux/actions/ContactActions';
+import { deleteContact } from '../../redux/contacts/action';
 
 const ContactRows = ({ data, handleShow }) => {
     const dispatch = useDispatch();

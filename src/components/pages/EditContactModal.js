@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { updateContact } from '../../redux/actions/ContactActions';
+import { updateContact } from '../../redux/contacts/action';
 
 const EditContactModal = ({ handleClose, contact_id }) => {
     const initial_state = { first_name: '', last_name: '', middle_name: '', email: '', mobile_no: '' }
