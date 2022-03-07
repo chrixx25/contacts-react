@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Container, Table, Col, Row, Button } from 'react-bootstrap';
 import Header from '../layout/Header';
 import AddContactModal from './AddContactModal';
@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 const Main = () => {
     const contacts = useSelector((state) => state);
     const [id, setId] = useState();
+
 
     const [showAdd, setShowAdd] = useState(false);
     const handleAddClose = () => setShowAdd(false);

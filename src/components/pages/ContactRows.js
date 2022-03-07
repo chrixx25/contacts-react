@@ -3,12 +3,13 @@ import { FaTrash, FaPencilAlt } from 'react-icons/fa';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { deleteContact } from '../../redux/actions/ContactActions';
 
 const ContactRows = ({ data, handleShow }) => {
     const dispatch = useDispatch();
 
-    const deleteContact = id => {
-        dispatch({ type: 'DELETE_CONTACT', payload: id });
+    const removeContact = id => {
+        dispatch(deleteContact(id));
         toast.success("Contact deleted successfully!");
     }
 
@@ -21,7 +22,7 @@ const ContactRows = ({ data, handleShow }) => {
                         <Button className="me-1 p-0" variant="primary" size="sm" onClick={() => handleShow(id)}>
                             <FaPencilAlt className='m-1' />
                         </Button>
-                        <Button className="me-1 p-0" variant="danger" size="sm" onClick={() => deleteContact(id)}>
+                        <Button className="me-1 p-0" variant="danger" size="sm" onClick={() => removeContact(id)}>
                             <FaTrash className='m-1' />
                         </Button>
                     </td>
