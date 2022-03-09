@@ -2,15 +2,15 @@ import React, { useEffect, useMemo } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { updateContact } from '../../redux/contacts/action';
+import { updateContact } from '../../redux/contacts/reducer';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getSchema } from '../../utils/schema';
 
 const EditContactModal = ({ handleClose, contact_id }) => {
-    const contacts = useSelector((state) => state);
-    const dispatch = useDispatch();
+    const contacts = useSelector((state) => state.contacts);
+    const dispatch = useDispatch()
     const current_contact = useMemo(() => contacts.find(contact => contact.id === parseInt(contact_id)), [contacts, contact_id]);
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
@@ -30,7 +30,7 @@ const EditContactModal = ({ handleClose, contact_id }) => {
     useEffect(() => {
         // reset form with user data
         reset(current_contact);
-    }, [current_contact]);
+    }, [current_contact, reset]);
 
     return (
         <Modal

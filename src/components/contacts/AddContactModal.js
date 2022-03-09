@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { addContact } from '../../redux/contacts/action';
+import { addContact } from '../../redux/contacts/reducer';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -10,7 +10,7 @@ import { getSchema } from '../../utils/schema';
 
 const AddContactModal = ({ handleClose }) => {
     const dispatch = useDispatch();
-    const contacts = useSelector((state) => state);
+    const contacts = useSelector((state) => state.contacts);
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(getSchema(contacts)),

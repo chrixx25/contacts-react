@@ -1,0 +1,1 @@
+export const API = (url = '') => `http://localhost/it-jots-api/${url}`;

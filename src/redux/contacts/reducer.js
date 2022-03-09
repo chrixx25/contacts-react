@@ -1,6 +1,6 @@
-import * as actions from '../ActionTypes';
+import { createSlice } from '@reduxjs/toolkit';
 
-const initial_state = [
+const initialState = [
     {
         id: 1,
         first_name: 'Christopher',
@@ -19,22 +19,27 @@ const initial_state = [
     }
 ];
 
-const contactReducer = (state = initial_state, action) => {
-    switch (action.type) {
-        case actions.ADD_CONTACT:
+const contactSlice = createSlice({
+    name: "auth",
+    initialState,
+    reducers: {
+        addContact: (state, action) => {
             state = [...state, action.payload];
             return state;
-        case actions.UPDATE_CONTACT:
+        },
+        updateContact: (state, action) => {
             const updated_state = state.map(contact => contact.id === action.payload.id ? action.payload : contact);
-            state = updated_state
+            state = updated_state;
             return state;
-        case actions.DELETE_CONTACT:
+        },
+        deleteContact: (state, action) => {
             const deleted_state = state.filter(contact => contact.id !== action.payload);
             state = deleted_state;
             return state;
-        default:
-            return state
-    }
-}
+        }
+    },
+});
+export const { addContact, updateContact, deleteContact } = contactSlice.actions;
 
-export default contactReducer;
+export default contactSlice.reducer;
+

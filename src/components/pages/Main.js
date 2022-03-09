@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Container, Table, Col, Row, Button } from 'react-bootstrap';
+import { FaPlus } from "react-icons/fa";
+import { useSelector } from 'react-redux';
+
 import Header from '../layout/Header';
 import AddContactModal from '../contacts/AddContactModal';
 import EditContactModal from '../contacts/EditContactModal';
 import ContactRows from '../contacts/ContactRows';
-import { FaPlus } from "react-icons/fa";
-import { useSelector } from 'react-redux';
 
 const Main = () => {
-    const contacts = useSelector((state) => state);
+    const contacts = useSelector((state) => state.contacts);
     const [id, setId] = useState();
 
     const [showAdd, setShowAdd] = useState(false);

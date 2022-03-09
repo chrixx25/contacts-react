@@ -1,0 +1,15 @@
+header {
+  vertical-align: center;
+  img.page-logo {
+    height: 43.84px;
+    width: 32.42px;
+    margin-right: 10px;
+  }
+}
+
+div {
+  &.login-container {
+    width: 400px;
+    margin-top: 100px;
+  }
+}
