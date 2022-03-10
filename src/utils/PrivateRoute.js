@@ -1,15 +1,9 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { getToken } from '../utils/token';
+import { Navigate } from 'react-router-dom';
+//import { getToken } from '../utils/token';
 
-// handle the private routes
-function PrivateRoute({ component: Component, ...rest }) {
-    return (
-        <Route
-            {...rest}
-            render={(props) => getToken() ? <Component {...props} /> : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />}
-        />
-    )
+const PrivateRoute = ({ Component, IsLogin }) => {
+    return IsLogin ? <Component /> : <Navigate to="/login" />
 }
 
 export default PrivateRoute;

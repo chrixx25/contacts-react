@@ -1,15 +1,9 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { getToken } from '../utils/token';
+import { Navigate } from 'react-router-dom';
+//import { getToken } from '../utils/token';
 
-// handle the public routes
-function PublicRoute({ component: Component, ...rest }) {
-    return (
-        <Route
-            {...rest}
-            render={(props) => !getToken() ? <Component {...props} /> : <Redirect to={{ pathname: '/' }} />}
-        />
-    )
+const PublicRoute = ({ Component, IsLogin }) => {
+    return !IsLogin ? <Component /> : <Navigate to="/" />
 }
 
 export default PublicRoute;
